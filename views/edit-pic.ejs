@@ -1,0 +1,31 @@
+<% include partials/header.ejs %>
+<div class="container">
+    <% if (message) { %>
+        <p class="text-center text-danger"><%= message %></p>
+    <% } %>
+
+    <% if (pic) { %>
+        <form class="add-pic-form" action="" method="post">
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label for="username">Username</label>
+                    <input type="text" class="form-control" name="username" id="username" value="<%= pic.user_name %>" required disabled title="Username cannot be edited.">
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="title">title</label>
+                    <input type="text" class="form-control" name="pic_title" id="title" value="<%= pic.pic_title %>" required>
+                </div>
+                <div class="form-group col-md-4">  
+                    <label for="desc">description</label>
+                    <input type="text" class="form-control" name="pic_desc" id="desc" value="<%= pic.pic_desc %>" required>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-success float-right">Update pic</button>
+        </form>
+    <% } else { %>
+        <p class="text-center">Pic Not Found. Go <a href="/add">here</a> to add pics.</p>
+    <% } %>
+</div>
+</div>
+</body>
+</html>

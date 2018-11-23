@@ -1,0 +1,37 @@
+<% include partials/header.ejs %>
+    <div class="table-wrapper">
+        <% if (pics.length > 0) {%>
+            <table class="table table-hovered">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">PIC</th>
+                        <th scope="col">USER</th>
+                        <th scope="col">TITLE</th>
+                        <th scope="col">DESC</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <% pics.forEach((pic, index) => { %>
+                        <tr>
+                            <th scope="row"><%= pic.pic_id %></th>
+                            <td><img src="/assets/img/<%= pic.pic_file %>" class="rounded-circle player-img" alt=""></td>
+                            <td>@<%= pic.username %></td>
+                            <td><%= pic.pic_title %></td>
+                            <td><%= pic.pic_desc %></td>
+                            <td>
+                                <a href="/edit/<%= pic.pic_id %>" target="_blank" rel="noopener" class="btn btn-sm btn-success">Edit</a>
+                                <a href="/delete/<%= pic.pic_id %>" class="btn btn-sm btn-danger">Delete</a>
+                            </td>
+                        </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+        <% } else { %>
+            <p class="text-center">No pics found. Go <a href="/add" >here</a> to add pics.</p>
+        <% } %>
+    </div>
+</div>
+</body>
+</html>
