@@ -3,7 +3,7 @@ const fs = require('fs');
 module.exports = {
     addPicPage: (req, res) => {
         res.render('add-pic.ejs', {
-            title: "Photo Blog | Add a new pic",
+            title: "Welcome to Annelise's Professional Photo Blog | Add a new pic",
             message: ''
         });
     },
@@ -66,14 +66,14 @@ module.exports = {
 
     editPicPage: (req, res) => {
         let pic_ID = req.params.id;
-        console.log(req.params.id);
-        let query = "SELECT * FROM `pictures` WHERE pic_id = '" + pic_ID + "' ";
+
+        let query = "SELECT * FROM `pictures` WHERE `pic_id` = " + pic_ID + " ";
         db.query(query, (err, result) => {
             if (err) {
                 return res.status(500).send(err);
             }
             res.render('edit-pic.ejs', {
-                title: "Edit pic",
+                title: "Edit picture info",
                 pic: result[0],
                 message: ''
             });
@@ -81,10 +81,11 @@ module.exports = {
     },
     editPic: (req, res) => {
         let pic_ID = req.params.id;
-        let pic_title = req.body.title;
-        let pic_desc = req.body.desc;
+        let pic_title = req.body.pic_title;
+        let pic_desc = req.body.pic_desc;
 
-        let query = "UPDATE `pictures` SET `pic_title` = '" + pic_title + "', `pic_desc` = '" + pic_desc + "' WHERE `pic_id` = '" + pic_ID + "'";
+        let query = "UPDATE `pictures` SET `pic_title` = '" + pic_title + "', `pic_desc` = '" + pic_desc + "' WHERE `pic_id` = " + pic_ID + " ";
+
         db.query(query, (err, result) => {
             if (err) {
                 return res.status(500).send(err);
@@ -94,14 +95,27 @@ module.exports = {
     },
     deletePic: (req, res) => {
         let pic_ID = req.params.id;
-        let deleteUserQuery = 'DELETE FROM pictures WHERE pic_id = "' + pic_ID + '"';
+        let getImageQuery = "SELECT `pic_file` from `pictures` WHERE `pic_id` = " + pic_ID + " ";
+        let deleteUserQuery = "DELETE FROM `pictures` WHERE `pic_id` = " + pic_ID + " ";
 
-        db.query(deleteUserQuery, (err, result) => {
+        db.query(getImageQuery, (err, result) => {
             if (err) {
                 return res.status(500).send(err);
             }
-            res.redirect('/');
-        });
 
+            let pic_file = result[0].pic_file;
+
+            fs.unlink(`public/assets/img/${pic_file}`, (err) => {
+                if (err) {
+                    return res.status(500).send(err);
+                }
+                db.query(deleteUserQuery, (err, result) => {
+                    if (err) {
+                        return res.status(500).send(err);
+                    }
+                    res.redirect('/');
+                });
+            });
+        });
     }
 };

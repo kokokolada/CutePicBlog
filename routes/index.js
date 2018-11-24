@@ -1,6 +1,6 @@
 module.exports = {
     getHomePage: (req, res) => {
-        let query = "SELECT * FROM `pictures` ORDER BY pic_id ASC"; //  
+        let query = "SELECT * FROM `pictures` ORDER BY pic_id DESC"; //  
 
         // execute query
         db.query(query, (err, result) => {

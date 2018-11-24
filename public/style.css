@@ -1,0 +1,67 @@
+a {
+    color: white;
+}
+
+.list {
+    list-style-type: none;
+}
+
+.specific {
+    font-weight: bold;
+    text-decoration: underline;
+    font-size: 1.5rem;
+}
+
+.table-wrapper {
+    margin-top: 50px;
+}
+
+.add-pic-form {
+    margin-top: 50px;
+}
+
+.pics {
+    align-self: center;
+    flex-direction: column;
+    display: flex;
+
+}
+
+.container {
+    width:850px;
+    padding: 10px 30px 0px 30px;
+
+}
+
+.anything {
+    flex-direction: column;
+    display: flex;
+    padding-top: 20px;
+}
+
+.thing {
+    padding-top: 10px;   
+    align-content: center;
+}
+
+li {
+    border-bottom: 1px solid rgba(0,0,0,.125);
+    padding-bottom: 10px;
+    text-align: right;
+}
+
+li:last-child {
+    border-bottom: none; 
+}
+
+
+.box-input {
+    width: 748px;
+    margin:auto;
+    padding: 20px;
+    border-bottom: 1px solid rgba(0,0,0,.125);  
+}
+
+.description {
+    text-align: center;
+}
