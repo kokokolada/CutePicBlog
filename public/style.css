@@ -54,6 +54,10 @@ li:last-child {
     border-bottom: none; 
 }
 
+.useralign {
+    text-align: left;
+}
+
 
 .box-input {
     width: 748px;

@@ -1,9 +1,9 @@
-const express = require('express');
+const express = require('express'); //used to create handle routing and process requests from the client
+const bodyParser = require('body-parser'); //used to parse incoming request from the client
+const mysql = require('mysql'); //Node JS driver for MySQL
+const path = require('path');//string or array of absolute paths to search for files
+const app = express();//we run express function to create our app variable
 const fileUpload = require('express-fileupload');
-const bodyParser = require('body-parser');
-const mysql = require('mysql');
-const path = require('path');
-const app = express();
 
 const {getHomePage} = require('./routes/index');  //define homepage
 const {addPicPage, addPic, deletePic, editPic, editPicPage} = require('./routes/pic.js'); //define other pages
